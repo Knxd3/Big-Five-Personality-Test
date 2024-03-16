@@ -1,0 +1,10 @@
+from django.db import models
+
+# Create your models here.
+
+class userScore(models.Model):
+    c = models.IntegerField()
+    a = models.IntegerField()
+    o = models.IntegerField()
+    e = models.IntegerField()
+    n = models.IntegerField()
