@@ -1,4 +1,9 @@
-.button {
+
+.text-justify {
+  text-align: justify !important;
+}
+
+/* .button {
     background: #2B2D2F;
     height: 80px;
     width: 200px;
@@ -51,4 +56,4 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-  
+   */
