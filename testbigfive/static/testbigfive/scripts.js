@@ -17,10 +17,11 @@
  $(document).ready(function() {
     $(".f1").click(function() {
       // alert('script loaded ok2');
-      $('#mytable').removeClass('invisible');
+      $('#mytable').removeClass('d-none');
     });
   }
  )
+
 
 //  var basicTimeline = anime.timeline({
 //     autoplay: false

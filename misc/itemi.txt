@@ -1,0 +1,29 @@
+conscientiousness
+- Uit să pun lucrurile la locul lor (-)
+- Îmi place ordinea (+)
+- Sunt atent(ă) la detalii (+)
+- Încurc treburile (-)
+
+agreeableness
+- Am un suflet bun (+)
+- Empatizez ușor cu alte persoane (+)
+- Nu mă interesează problemele altora (-)
+- Respect autoritatea (+)
+
+emotional stability
+- Nu sunt stresat (+)
+- Oscilez de la o stare emoțională la alta (-)
+- Rareori mă simt deprimat(ă) (+)
+- Mă ingrijorez mult (-)
+
+openness
+- Am un vocabular bogat (+)
+- Am idei excelente (+)
+- Nu mă interesează ideile abstracte (-)
+- Discuțiile filozofice mă plictisesc (-)
+
+extraversion
+- Sunt sufletul petrecerii (+)
+- Inițiez conversații (+)
+- Nu vorbesc mult (-)
+- Nu-mi place să atrag atenția asupra mea (-)

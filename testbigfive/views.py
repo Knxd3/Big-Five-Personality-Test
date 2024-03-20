@@ -4,7 +4,7 @@ import numpy as np
 from .forms import survey
 from .models import userScore
 
-# Create your views here.
+
 
 def questionnaire(request):
     ans = request.POST
@@ -32,6 +32,9 @@ def questionnaire(request):
                                             np.where(raw_['index_id'] <= 12, 'a',
                                                      np.where(raw_['index_id'] <= 16, 'e', 'n'))))
 
+            # adjust sign #
+            # raw_ = 
+            raw_['value'] = raw_['value'].values * np.array([1,1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1])
             scores_agg = raw_.groupby(['facet']).agg({'value' : 'sum'})
             scores_f = scores_agg.transpose()
             scores_f1 = pd.DataFrame({'c':[None], 'o':[None], 'a':[None], 'e':[None], 'n':[None], 'user':[request.user]})
@@ -60,13 +63,67 @@ def questionnaire(request):
     else:
         print('form not ok')
 
+    context = {
+        'n': range(1,21),
+        'm': range(1,6),
+        'answs': ans,
+        'q_set': {'1' : 'Sunt atent(ă) la detalii',
+                  '2' : 'Îmi place ordinea',
+                  '3' : 'Încurc treburile',
+                  '4' : 'Uit să pun lucrurile la locul lor',
+                  '5' : 'Am un vocabular bogat',
+                  '6' : 'Am idei excelente',
+                  '7' : 'Nu mă interesează ideile abstracte',
+                  '8' : 'Discuțiile filozofice mă plictisesc',
+                  '9' : 'Am un suflet bun',
+                  '10' : 'Respect autoritatea',
+                  '11' : 'Sunt o persoană greu de cunoscut',
+                  '12' : 'Nu mă interesează problemele altora',
+                  '13' : 'Sunt sufletul petrecerii',
+                  '14' : 'Inițiez conversații',
+                  '15' : 'Nu vorbesc mult',
+                  '16' : 'Nu-mi place să atrag atenția asupra mea',
+                  '17' : 'Nu sunt stresat',
+                  '18' : 'Rareori mă simt deprimat(ă)',
+                  '19' : 'Mă ingrijorez mult',
+                  '20' : 'Oscilez de la o stare emoțională la alta'}
+    }
+    return render(request, "testbigfive/index.html", context)
+
+
+
+
+#### RESULTS PAGE ####
+def results(request):
     db_qs = userScore.objects.all().values()
     db_qs_df = pd.DataFrame.from_records(db_qs)
     print(db_qs_df)
 
-    context = {
-        'n': range(1,21),
-        'm': range(1,6),
-        'answs': ans
+    latest_db_q = db_qs_df.loc[db_qs_df['id'] == max(db_qs_df['id'].values), :]
+    print(latest_db_q)
+
+    # print(np.percentile([1,2,3,4,5,6,7,8,9], [50]))
+
+    # vals = np.array([1,2,3,4,5,6,7,8,9])
+    # p_bigger = np.sum(4 > vals)
+    # k_list = len(vals)
+    # print(p_bigger/k_list)
+    
+
+    ###### add percentile calculator #####
+
+    def ptile_calc(all, latest):
+         return np.sum(latest > all) / len(all)
+
+    ptiles = {
+         'c': ptile_calc(db_qs_df['c'].values, latest_db_q['c'].values[0]),
+         'a': ptile_calc(db_qs_df['a'].values, latest_db_q['a'].values[0]),
+         'e': ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
+         'n': ptile_calc(db_qs_df['n'].values, latest_db_q['n'].values[0]),
+         'o': ptile_calc(db_qs_df['o'].values, latest_db_q['o'].values[0])
     }
-    return render(request, "testbigfive/index.html", context)
+
+    print(ptiles)
+    
+    #  context = 
+    return render(request, 'testbigfive/results.html')
