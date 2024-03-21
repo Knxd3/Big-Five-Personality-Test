@@ -34,7 +34,7 @@ def questionnaire(request):
 
             # adjust sign #
             # raw_ = 
-            raw_['value'] = raw_['value'].values * np.array([1,1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1])
+            raw_['value'] = raw_['value'].values * np.array([1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1])
             scores_agg = raw_.groupby(['facet']).agg({'value' : 'sum'})
             scores_f = scores_agg.transpose()
             scores_f1 = pd.DataFrame({'c':[None], 'o':[None], 'a':[None], 'e':[None], 'n':[None], 'user':[request.user]})
@@ -129,5 +129,7 @@ def results(request):
 
     print(ptiles)
     
-    #  context = 
-    return render(request, 'testbigfive/results.html')
+    context = {
+         'ptiles': ptiles
+     }
+    return render(request, 'testbigfive/results.html', context)

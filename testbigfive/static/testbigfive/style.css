@@ -3,6 +3,28 @@
   text-align: justify !important;
 }
 
+.myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #c52233;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white; 
+}
+
+.myProgress {
+  width: 10%;
+  background-color: grey;
+}
+
+.content {
+  max-width: 550px;
+  margin: auto;
+    margin-bottom: 15px;
+   
+    padding: 5px;
+}
+
 /* .button {
     background: #2B2D2F;
     height: 80px;

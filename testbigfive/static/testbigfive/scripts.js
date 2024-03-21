@@ -10,9 +10,29 @@
 //     direction: 'alternate'
 //   });  
 
-// function f1() {
-//   alert("Hello from a static file!");
-// }
+function f1() {
+  alert("Hello from a static file!");
+}
+
+
+function survey() {
+    $('#mytable').removeClass('d-none')
+}
+
+function progr_bar(val) {
+    var elem = document.getElementById("myBar1"); 
+    var width = 0;
+    var id = setInterval(frame, 60);
+    function frame() {
+      if (width >= val) {
+        clearInterval(id);
+      } else {
+        width++; 
+        elem.style.width = width + '%'; 
+        elem.innerHTML = width * 1 + '%';
+      }
+    }
+}
 
 //  $(document).ready(function() {
 //     $(".bring_tbl").click(function() {
