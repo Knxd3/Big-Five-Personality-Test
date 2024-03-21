@@ -5,18 +5,43 @@ from .forms import survey
 from .models import userScore
 
 
-
 def questionnaire(request):
-    ans = request.POST
+    # ans = request.POST
     # print(request.POST)
     # print(request.user)
     #### check form is valid 
-    form = survey(request.POST)
+    context = {
+        'n': range(1,21),
+        'm': range(1,6),
+        'q_set': {'1' : 'Sunt atent(ă) la detalii',
+                  '2' : 'Îmi place ordinea',
+                  '3' : 'Încurc treburile',
+                  '4' : 'Uit să pun lucrurile la locul lor',
+                  '5' : 'Am un vocabular bogat',
+                  '6' : 'Am idei excelente',
+                  '7' : 'Nu mă interesează ideile abstracte',
+                  '8' : 'Discuțiile filozofice mă plictisesc',
+                  '9' : 'Am un suflet bun',
+                  '10' : 'Respect autoritatea',
+                  '11' : 'Sunt o persoană greu de cunoscut',
+                  '12' : 'Nu mă interesează problemele altora',
+                  '13' : 'Sunt sufletul petrecerii',
+                  '14' : 'Inițiez conversații',
+                  '15' : 'Nu vorbesc mult',
+                  '16' : 'Nu-mi place să atrag atenția asupra mea',
+                  '17' : 'Nu sunt stresat',
+                  '18' : 'Rareori mă simt deprimat(ă)',
+                  '19' : 'Mă ingrijorez mult',
+                  '20' : 'Oscilez de la o stare emoțională la alta'}
+    }
     #### move logic here for prod
-    if form.is_valid():
+    if request.method == 'POST':
+        form = survey(request.POST)
+        print(form)
+        if form.is_valid():
             # print('ok')
 
-            qry_dict = ans.dict()
+            qry_dict = request.POST.dict()
             new_dict = dict()
             for i in qry_dict.keys():
                 if i != 'csrfmiddlewaretoken':
@@ -43,55 +68,32 @@ def questionnaire(request):
             def check(p, scr):
                 if p in scores_f.columns:
                     return scores_f[p].values[0]
-
-            scores_f1['a'] = check('a', scores_f) 
+            
             scores_f1['c'] = check('c', scores_f) 
-            scores_f1['o'] = check('o', scores_f) 
-            scores_f1['n'] = check('n', scores_f) 
+            scores_f1['a'] = check('a', scores_f)
             scores_f1['e'] = check('e', scores_f) 
+            scores_f1['n'] = check('n', scores_f)
+            scores_f1['o'] = check('o', scores_f) 
+             
+             
 
             # print(scores_f1)
 
             user_entry = userScore(c = scores_f1['c'].values[0],
                                    a = scores_f1['a'].values[0],
-                                   n = scores_f1['n'].values[0],
                                    e = scores_f1['e'].values[0],
+                                   n = scores_f1['n'].values[0],
                                    o = scores_f1['o'].values[0])
             user_entry.save()
 
             print(user_entry.id)
+            return redirect('results')
 
     else:
-        print('form not ok')
-    
-    if request.method == 'POST':
-         return redirect('results')
+            print('errors')
+            context['form'] = form
+            return render(request, 'testbigfive/index.html', context)
 
-    context = {
-        'n': range(1,21),
-        'm': range(1,6),
-        'answs': ans,
-        'q_set': {'1' : 'Sunt atent(ă) la detalii',
-                  '2' : 'Îmi place ordinea',
-                  '3' : 'Încurc treburile',
-                  '4' : 'Uit să pun lucrurile la locul lor',
-                  '5' : 'Am un vocabular bogat',
-                  '6' : 'Am idei excelente',
-                  '7' : 'Nu mă interesează ideile abstracte',
-                  '8' : 'Discuțiile filozofice mă plictisesc',
-                  '9' : 'Am un suflet bun',
-                  '10' : 'Respect autoritatea',
-                  '11' : 'Sunt o persoană greu de cunoscut',
-                  '12' : 'Nu mă interesează problemele altora',
-                  '13' : 'Sunt sufletul petrecerii',
-                  '14' : 'Inițiez conversații',
-                  '15' : 'Nu vorbesc mult',
-                  '16' : 'Nu-mi place să atrag atenția asupra mea',
-                  '17' : 'Nu sunt stresat',
-                  '18' : 'Rareori mă simt deprimat(ă)',
-                  '19' : 'Mă ingrijorez mult',
-                  '20' : 'Oscilez de la o stare emoțională la alta'}
-    }
     return render(request, "testbigfive/index.html", context)
 
 
@@ -140,5 +142,18 @@ def results(request):
     
     print({k: v * 100 for k, v in ptiles.items()})
     # print(ptiles['c'] * 100)
+    
+
+    # if want to generate random scores
+
+    # for i in range(100):
+    #     userScore(
+             
+    #           user = '',
+    #           c = np.random.binomial(16, 0.5) - 8, 
+    #           a = np.random.binomial(16, 0.5) - 8, 
+    #           e = np.random.binomial(16, 0.5) - 8, 
+    #           n = np.random.binomial(16, 0.5) - 8, 
+    #           o = np.random.binomial(16, 0.5) - 8).save()
     
     return render(request, 'testbigfive/results.html', context)
