@@ -10,17 +10,17 @@
 //     direction: 'alternate'
 //   });  
 
-//  function f1() {
-    // alert('script loaded ok')
-//  }
+// function f1() {
+//   alert("Hello from a static file!");
+// }
 
- $(document).ready(function() {
-    $(".f1").click(function() {
-      // alert('script loaded ok2');
-      $('#mytable').removeClass('d-none');
-    });
-  }
- )
+//  $(document).ready(function() {
+//     $(".bring_tbl").click(function() {
+//       alert('script loaded ok2');
+//       $('#mytable').removeClass('invisible');
+//     });
+//   }
+//  )
 
 
 //  var basicTimeline = anime.timeline({

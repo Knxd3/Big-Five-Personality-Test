@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import pandas as pd
 import numpy as np
 from .forms import survey
@@ -60,8 +60,12 @@ def questionnaire(request):
             user_entry.save()
 
             print(user_entry.id)
+
     else:
         print('form not ok')
+    
+    if request.method == 'POST':
+         return redirect('results')
 
     context = {
         'n': range(1,21),
