@@ -120,16 +120,25 @@ def results(request):
          return np.sum(latest > all) / len(all)
 
     ptiles = {
-         'c': ptile_calc(db_qs_df['c'].values, latest_db_q['c'].values[0]),
-         'a': ptile_calc(db_qs_df['a'].values, latest_db_q['a'].values[0]),
-         'e': ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
-         'n': ptile_calc(db_qs_df['n'].values, latest_db_q['n'].values[0]),
-         'o': ptile_calc(db_qs_df['o'].values, latest_db_q['o'].values[0])
+         'Conștiinciozitate': ptile_calc(db_qs_df['c'].values, latest_db_q['c'].values[0]),
+         'Agreeabilitate': ptile_calc(db_qs_df['a'].values, latest_db_q['a'].values[0]),
+         'Extraversie': ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
+         'Stabilitate Emoțională': ptile_calc(db_qs_df['n'].values, latest_db_q['n'].values[0]),
+         'Deschidere Către Experiențe': ptile_calc(db_qs_df['o'].values, latest_db_q['o'].values[0])
     }
 
     print(ptiles)
     
     context = {
-         'ptiles': ptiles
+        #  'c':ptiles['c'] * 100,
+        #  'a':ptiles['a'] * 100,
+        #  'e':ptiles['e'] * 100,
+        #  'n':ptiles['n'] * 100,
+        #  'o':ptiles['o'] * 100,
+         'ptiles': {k: v * 100 for k, v in ptiles.items()}
      }
+    
+    print({k: v * 100 for k, v in ptiles.items()})
+    # print(ptiles['c'] * 100)
+    
     return render(request, 'testbigfive/results.html', context)

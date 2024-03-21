@@ -19,20 +19,25 @@ function survey() {
     $('#mytable').removeClass('d-none')
 }
 
-function progr_bar(val) {
-    var elem = document.getElementById("myBar1"); 
-    var width = 0;
-    var id = setInterval(frame, 60);
+function progr_bar(key, val) {
+    console.log(key)
+    var elem = document.getElementById(key); 
+    var width = 1;
+    var id = setInterval(frame, 25);
+    k = 0
     function frame() {
       if (width >= val) {
         clearInterval(id);
       } else {
+        k++;
         width++; 
         elem.style.width = width + '%'; 
         elem.innerHTML = width * 1 + '%';
       }
     }
+    
 }
+
 
 //  $(document).ready(function() {
 //     $(".bring_tbl").click(function() {
