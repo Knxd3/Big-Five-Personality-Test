@@ -1,15 +1,18 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 import pandas as pd
 import numpy as np
 from .forms import survey
 from .models import userScore
+from django.views.decorators.cache import never_cache
 
-
+@never_cache
 def questionnaire(request):
     # ans = request.POST
     # print(request.POST)
     # print(request.user)
     #### check form is valid 
+
     context = {
         'n': range(1,21),
         'm': range(1,6),
@@ -33,13 +36,15 @@ def questionnaire(request):
                   '18' : 'Rareori mă simt deprimat(ă)',
                   '19' : 'Mă ingrijorez mult',
                   '20' : 'Oscilez de la o stare emoțională la alta'}
-    }
+            }
+
     #### move logic here for prod
     if request.method == 'POST':
         form = survey(request.POST)
-        print(form)
+        print(form.errors)
+        print('post')
         if form.is_valid():
-            # print('ok')
+            print('valid')
 
             qry_dict = request.POST.dict()
             new_dict = dict()
@@ -89,11 +94,17 @@ def questionnaire(request):
             print(user_entry.id)
             return redirect('results')
 
-    else:
-            print('errors')
-            context['form'] = form
-            return render(request, 'testbigfive/index.html', context)
-
+            # print('errors')
+            # context['form'] = form
+            # return render(request, 'testbigfive/index.html', context)
+        else:
+            # form = survey()
+            # context['err'] = 1
+            # print(form.errors)
+            print('invalid form')
+            # alert('Please fill out all the questions.')
+            # return render(request, context)
+            context['err'] = 0
     return render(request, "testbigfive/index.html", context)
 
 

@@ -27,6 +27,7 @@
         text-align:center;">
       </div>
     </div>
+    <hr>
     <br />
     <div class="row justify-content-center">
         <div class="col-10 panel">
@@ -68,16 +69,8 @@
             egestas fringilla phasellus faucibus scelerisque eleifend donec.
           </p>
         </div>
+      </div>
   
-
-        {% comment %} <div class="row justify-content-center">
-          <div class="col-10 panel">
-            <h5 class="noPadding">Conștiinciozitate</h5 >
-
-              <div class="myProgress">
-                <div id="myBar1" class='myBar'>0%</div>
-              </div>
-        </div> {% endcomment %}
 
 
         {% for key, val in ptiles.items %}
@@ -89,8 +82,40 @@
             </div>
           </div>
         </div>
+        
         {% endfor %}
         
+        <br>
+        <hr>
+        <div class = "row justify-content-center">
+          <div class = "col-10 panel" style = 'background: #eee;'>
+            <p> Te interesează și vrei să aflii mai mult? Pagina noastră de Facebook postează frecvent ultimele noutăți legate de teoria Big Five. O poți accesa aici . </p>
+          </div>
+        </div>
+
+
+        <div class = "row justify-content-center">
+          <div class = "col-10 panel" style = 'background: #eee;'>
+            <p> Te interesează și vrei să aflii mai mult? Pagina noastră de Facebook postează frecvent ultimele noutăți legate de teoria Big Five. O poți accesa aici . </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+        
+
+        <div class = 'container'>
+          <br>
+          <div class = 'row justify-content-center'>
+          <hr>
+          <div > <pre style="float: left; font-size: 11px;">Toate drepturile rezervate
+          testbigfive.ro</pre> <pre style="float: right; font-size: 11px;"><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"><i class="fa fa-facebook-square" style="font-size:15px"></i></a>
+            contact@testbigfive.ro</pre> 
+          </div>
+          
+          </div> 
+
+
     {% for key, val in ptiles.items %}
     <script> window.onload = progr_bar("{{key}}", "{{val}}") </script>
     {% endfor %}

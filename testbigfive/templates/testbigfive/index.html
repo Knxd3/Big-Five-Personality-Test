@@ -31,6 +31,7 @@
           text-align:center;">
         </div>
       </div>
+      <hr>
       <br />
       <div class="row justify-content-center">
         <div class="col-10 panel">
@@ -101,6 +102,7 @@
       </div>
       <br />
 
+      
       <div class = 'container col-10 d-none' id = 'mytable'>
       <div class="row justify-content-center">
         <div class="justify-content-center form-control">
@@ -124,11 +126,10 @@
               </tr>
               {% endfor %}
             </table>
-            <div class = 'form-control'>
-              <button type="submit" value="Submit" class = "btn btn-light form-control" />
+              <button type="submit" value="Submit" class = "btn btn-light form-control"/>
               Trimite
           </button>
-            </div>
+            
           </form>
         </div>
       </div>
@@ -137,33 +138,21 @@
 
 
 
-    {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-dismissible">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-    {% endif %}
-    
+    {% if err == 0 %}
+      <script> alert('Please fill out all the questions.') </script>
+    {% endif %} 
 
-
-  <div class = 'container'>
-    <div class = 'row justify-content-center'>
-    <hr>
-    <div > <pre style="float: left; font-size: 11px;">Toate drepturile rezervate
-    testbigfive.ro</pre> <pre style="float: right; font-size: 11px;"><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"><i class="fa fa-facebook-square" style="font-size:15px"></i></a>
-      contact@testbigfive.ro</pre> 
-    </div>
     <br>
-    <br>
-    </div> 
+    <div class = 'container'>
+      <div class = 'row justify-content-center'>
+      <hr>
+      <div > <pre style="float: left; font-size: 11px;">Toate drepturile rezervate
+      testbigfive.ro</pre> <pre style="float: right; font-size: 11px;"><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"><i class="fa fa-facebook-square" style="font-size:15px"></i></a>
+        contact@testbigfive.ro</pre> 
+      </div>
+      <br>
+      <br>
+      </div> 
   </body>
   
 </html>
