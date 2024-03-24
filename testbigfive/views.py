@@ -132,12 +132,54 @@ def results(request):
     def ptile_calc(all, latest):
          return np.sum(latest > all) / len(all)
 
+    # ptiles = {
+    #      'Conștiinciozitate': ptile_calc(db_qs_df['c'].values, latest_db_q['c'].values[0]),
+    #      'Agreeabilitate': ptile_calc(db_qs_df['a'].values, latest_db_q['a'].values[0]),
+    #      'Extraversie': ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
+    #      'Stabilitate Emoțională': ptile_calc(db_qs_df['n'].values, latest_db_q['n'].values[0]),
+    #      'Deschidere Către Experiențe': ptile_calc(db_qs_df['o'].values, latest_db_q['o'].values[0])
+    # }
+
     ptiles = {
-         'Conștiinciozitate': ptile_calc(db_qs_df['c'].values, latest_db_q['c'].values[0]),
-         'Agreeabilitate': ptile_calc(db_qs_df['a'].values, latest_db_q['a'].values[0]),
-         'Extraversie': ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
-         'Stabilitate Emoțională': ptile_calc(db_qs_df['n'].values, latest_db_q['n'].values[0]),
-         'Deschidere Către Experiențe': ptile_calc(db_qs_df['o'].values, latest_db_q['o'].values[0])
+         'Conștiinciozitate': 
+             [
+            'conștiincioasă',     
+            ptile_calc(db_qs_df['c'].values, latest_db_q['c'].values[0]),
+             [f"""Conștiinciozitatea este dimensiunea care măsoară trăsăturile ce țin de productivitate, strictețe, aderența la reguli și de tendința de a planifica. Persoanele conștiincioase își elaborează traiectorii pe care le urmează, punând în practică pașii către obiectiv. Ele tind să compartimentalizeze chestiunile după categorii fixe și să păstreze ordinea și curățenia; acestea din urmă atât concret, cu privire la spațiul personal, cât și abstract, cu privire la judecățile despre situații sau despre ceilalți. De asemenea, tind să nu procrastineze, mai ales dacă sunt și stabile (în terminologia Big Five). Persoanele conștiincioase pot părea încăpățânate și inflexibile, abătându-se cu greu de la setul de reguli pe care au acceptat să îl urmeze.""",
+                               f"""Spre deosebire, persoanele de celalată parte a spectrului au o abordare flexibilă asupra vieții și tind să nu pună mare preț pe simțul responsabilității, pe abordări procedurale (de rutină) sau pe ordine. Au o atitudine relaxată și pot fi rar caracterizați de trăsături precum o voință puternică sau o atitudine disciplinată. Din această cauză, pot des manifestă comportamente delăsătoare sau inconsecvente; dacă sunt caracterizați de un grad înalt de deschidere către experiențe, pot începe numeroase proiecte fără să le și finalizeze. Avantajele acestei abordări se ivesc în ipostaze în care planificarea de termen lung nu se justifică: în contextul unităților monetare instabile, situațiilor de război, în preajma guvernelor cu comportament imprevizibil sau altele de acest fel.""",
+                               f"""Persoanele conștiincioase tind să predomine în domenii manageriale sau administrative, unde respectarea procedurilor, organizarea resurselor și cerințele exigente pe productivitate sunt de prim ordin. Persoanele neconștiincioase beneficiază profesional de pe urmă spontaneității lor în domenii precum stand-up-ul sau actoria, mai ales dacă sunt caracterizați și de un grad ridicat de deschidere către experiențe. Nefiind preocupați în așa mare măsură cu obiectivele profesionale, ei tind să nu cadă pradă burn-out-ului și să se bucure mai mult de plăcerile vieții."""],   
+             ],
+         'Agreeabilitate': 
+             [
+            'agreeabilă',
+             ptile_calc(db_qs_df['a'].values, latest_db_q['a'].values[0]),
+                            [f"""Agreabilitatea este dimensiunea Big Five care surprinde trăsăturile de cordialitate, cooperare și amiabilitate. Persoanele agreabile sunt calde, primitoare și ușor de abordat, iar atitudinea lor deschisă îi face să fie o companie de dorit oriunde s-ar afla. Ei văd mereu ce este mai bun în ceilalți și se raportează acelei părți din om atunci când interacționează cu alții. De asemenea, valorifică extrem de mult toleranța și înțelegerea reciprocă. Doresc să ajungă la cooperare și să evite conflictul cu orice preț. Datorită dorinței puternice de a menține relații amiabile cu toate persoanele pe care le cunosc, persoanele agreabile pot concesiona foarte mult din ceea ce își doresc, fapt ce duce des la resentimente. Acest fapt poate da naștere comportamentelor pasiv-agresive. Mai apoi, în anumite cazuri, evitarea abordării directe pentru rezolvarea problemelor poate duce la agregarea lor în situații mult mai greu de depășit decât ar fi fost cazul dacă s-ar fi rezolvat prompt încă din faza incipientă.""",
+                            f"""Spre deosebire, persoanele dizagreabile nu sunt deloc calde, concesionare sau ușor de abordat. Persoanele dizagreabile tind să vrea să facă doar ceea ce decid ele însele, fără a compromite vreun aspect de dragul altor oameni. În multe cazuri nu sunt cooperante și preferă mai degrabă conflictul, unde disputele se rezolvă cu un învingător și un pierzător clar hotărâți. De asemenea, persoanele cu această trăsătură tind să negocieze în favoarea propriei persoane, chiar și în detrimentul celorlalte părți implicate. Din acest motiv, pot părea egoiști. În cazuri extreme, dezagreabilitatea poate evolua în comportament antisocial sau prădător. Considerând și faptul că persoanele dezagreabile detestă autoritatea, ei pot ajunge să aibă probleme pronunțate cu legea sau formele de autoritate din instituții."""],
+         ],
+
+         'Extraversie': [
+             'extravertă',
+             ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
+                         [f"""Extraversia este dimensiunea care măsoară excitabilitatea la stimuli și propensiunea către activități care implică un număr mare de oameni. Persoanele extraverte prosperă de pe urmă socializării și tind să fie vivace și agere în a observa și reacționa rapid la toate situațiile cu care se confruntă. Urmăresc să implice alți oameni în activitățile pe care le întreprind și se alătură instictiv altora atunci când oportunitatea se ivește. Persoanele caracterizate puternic de această dimensiune a personalității sunt asertive și caută să fie în centrul atenției, fie pentru a conduce, fie pentru se distra împreună cu ceilalți. În cazuri extreme, pot să fie prea tentați de nevoia de a se alătura altora pentru a putea să-și urmeze în mod eficace scopurile. Aceasta este cu atât mai adevărată cu cât nivelul lor de conștiinciozitate este mai scăzut.""",
+                         f"""Pe de cealaltă parte, persoanele introverte sunt mult mai puțin excitabile la stimuli și se simt copleșite de agitație, zgomot sau contexte sociale ample. Persoanele introverte nu implică alți oameni în activitățile pe care le întreprind, preferând concentrarea permisă de solitudine. Atunci când interacționează cu alți oameni, preferă să o facă alături de prieteni sau cunoscuți. De asemenea, tind să conceapă răspunsuri la întrebări mai încet, punând mai mare preț pe calitatea informației oferite decât pe rapiditatea oferirii informației; consideră acest acest al doilea tip de răspuns ca fiind impropriu și expedient. Introverților le este mai greu să inițieze conversații sau să își facă vocea auzită, fapt pentru care pot rămâne într-un rol secundar chiar și atunci când calificările le-ar permite să se afirme."""],
+         ],
+         
+         'Stabilitate Emoțională': [
+             'stabilă emoțional',
+             ptile_calc(db_qs_df['n'].values, latest_db_q['n'].values[0]),
+                                    
+                                    [f"""Stabilitatea emoțională se referă la gradul de discomfort resimțit raportat la gradul de stres perceput. Persoanele instabile emoțional trăiesc senzații de îngrijorare, panică sau teamă într-o măsură mai pronunțată decât ar sugera drept necesar stimulul cu care se confruntă. Ei fluctuează sporadic între stări cu valențe opuse, de la elație ori calm absolut până la panică sau deznădejde deplină. Persoanele cu un scor ridicat la această dimensiune tind să cadă pradă afecțiunilor precum anxietatea sau depresia. Pot fi irascibile, răbufnind din cele mai mici afronturi sau remarci. De asemenea, persoanele instabile simt în mai mică măsură că dețin controlul asupra propriei persoane și că, mai degrabă, sunt purtați și împinși ici-colo de circumstanțe și impulsuri. Cu toate acestea, grijile suplimentare care îi preocupă îi feresc des de la a își asuma riscuri nefondate.""",
+                                    f"""Spre deosebire de ei, persoanele stabile emoțional sunt relaxate, nu își pierd cumpătul sub presiune și nu se lasă luați prin surprindere de emoții. Sunt mult mai comfortabile cu ideea de a își asuma un risc și nu se panichează în situații neprevăzute. De asemenea, își mențin calmul chiar și când lucrurile ies cu totul de sub control în jurul lor și pot astfel rămâne cu picioarele pe pământ atunci când sunt puși sub presiune. Rareori cad pradă trăirilor negative și mențin o perspectivă optimistă asupra vieții. În cazuri de conflict, răspund mereu mai degrabă tactic decât impulsiv, ceea ce le conferă un avantaj în astfel de situații. Pot tolera un nivel ridicat de stres, extins pe o perioadă îndelungată de timp, resimțind în mai mică măsură efectele negative ale acestui stil de viață."""],
+         ],
+         
+         'Deschidere Către Experiențe': [
+             'deschisă către experiențe',
+             ptile_calc(db_qs_df['o'].values, latest_db_q['o'].values[0]),
+                                         
+                                         [f"""Deschiderea către experiențe este dimensiunea care măsoară trăsăturile ce țin de curiozitate, propensiune artistică, creativitate și nonconformism. Persoanele deschise către experiențe sunt des interesate de o gamă extrem de largă de subiecte, fapt care poate fi o lamă cu două tăișuri pentru ei. Pe de-o parte, poate duce la o personalitate enciclopedică sau spre dobândirea unui număr neobișnuit de mare de abilități; aceasta din urmă este în special probabilă atunci când persoana este caracterizată și de un grad înalt de conștiinciozitate. Pe de altă parte, poate duce la o personalitate diletantă sau nedefinită; aceste trăsături se manifestă mai ales dacă persoană este instabilă și neconștiincioasă. În oricare din cazuri, ei tind să fie consumatori vorace de materiale culturale sau informative, căutand activ să asiste la dezbateri, piese de teatru, prelegeri teoretice sau alte evenimente culturale. Persoanele deschise către experiențe au deseori o latură creativă care se manifestă prin producerea de obiecte de artă precum poezia, fotografia sau pictatul. Ei simt nevoia să se exprime în mod creativ și să se aventureze pe căi necunoscute, ceea ce deseori poate lua o formă excentrică sau iconoclastă, în special dacă persoană este caracterizată și de un grad înalt de dezagreabilitate.""",
+                                         f"""Persoanele care scorează scăzut în această dimensiune sunt tradiționaliste și preferă să urmeze calea cunoscută de a face ceva. Nu doresc să inoveze sau să gasească moduri noi de a privi lucrurile sau a acționa. Dacă sunt și conștiincioase, au un grad extrem de pronunțat de concetrare pe esențialul de acțiuni care trebuie urmate pentru a ajunge la scopul propus, fără să se abată atrași de chestiuni irelevante. După ce și-au ales un domeniu de activitate, vor fi reticenți în a îl schimba sau în a îl complementa cu aspecte din domenii netangențiale. În general, pot tolera rutina mai bine și pun mare preț pe a urma categoriile sociale deja stabilite."""]
+
+         ]
     }
 
     print(ptiles)
@@ -148,10 +190,10 @@ def results(request):
         #  'e':ptiles['e'] * 100,
         #  'n':ptiles['n'] * 100,
         #  'o':ptiles['o'] * 100,
-         'ptiles': {k: v * 100 for k, v in ptiles.items()}
+         'ptiles': {k: [v[0], int(v[1] * 100), v[2]] for k, v in ptiles.items()},
      }
     
-    print({k: v * 100 for k, v in ptiles.items()})
+    # print({k: v * 100 for k, v in ptiles.items()})/
     # print(ptiles['c'] * 100)
     
 
