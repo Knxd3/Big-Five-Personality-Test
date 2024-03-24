@@ -41,10 +41,10 @@ def questionnaire(request):
     #### move logic here for prod
     if request.method == 'POST':
         form = survey(request.POST)
-        print(form.errors)
-        print('post')
+        # print(form.errors)
+        # print('post')
         if form.is_valid():
-            print('valid')
+            # print('valid')
 
             qry_dict = request.POST.dict()
             new_dict = dict()
@@ -91,7 +91,7 @@ def questionnaire(request):
                                    o = scores_f1['o'].values[0])
             user_entry.save()
 
-            print(user_entry.id)
+            # print(user_entry.id)
             return redirect('results')
 
             # print('errors')
@@ -114,10 +114,10 @@ def questionnaire(request):
 def results(request):
     db_qs = userScore.objects.all().values()
     db_qs_df = pd.DataFrame.from_records(db_qs)
-    print(db_qs_df)
+    # print(db_qs_df)
 
     latest_db_q = db_qs_df.loc[db_qs_df['id'] == max(db_qs_df['id'].values), :]
-    print(latest_db_q)
+    # print(latest_db_q)
 
     # print(np.percentile([1,2,3,4,5,6,7,8,9], [50]))
 
@@ -182,7 +182,7 @@ def results(request):
          ]
     }
 
-    print(ptiles)
+    # print(ptiles)
     
     context = {
         #  'c':ptiles['c'] * 100,
