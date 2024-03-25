@@ -160,7 +160,7 @@ def results(request):
          'Extraversie': [
              'extravertă',
              ptile_calc(db_qs_df['e'].values, latest_db_q['e'].values[0]),
-                         [f"""Extraversia este dimensiunea care măsoară excitabilitatea la stimuli și propensiunea către activități care implică un număr mare de oameni. Persoanele extraverte prosperă de pe urmă socializării și tind să fie vivace și agere în a observa și reacționa rapid la toate situațiile cu care se confruntă. Urmăresc să implice alți oameni în activitățile pe care le întreprind și se alătură instictiv altora atunci când oportunitatea se ivește. Persoanele caracterizate puternic de această dimensiune a personalității sunt asertive și caută să fie în centrul atenției, fie pentru a conduce, fie pentru se distra împreună cu ceilalți. În cazuri extreme, pot să fie prea tentați de nevoia de a se alătura altora pentru a putea să-și urmeze în mod eficace scopurile. Aceasta este cu atât mai adevărată cu cât nivelul lor de conștiinciozitate este mai scăzut.""",
+                         [f"""Extraversia este dimensiunea care măsoară excitabilitatea la stimuli și propensiunea către activități care implică un număr mare de oameni. Persoanele extraverte prosperă de pe urmă socializării și tind să fie vivace și agere în a observa și reacționa rapid la toate situațiile cu care se confruntă. Urmăresc să implice alți oameni în activitățile pe care le întreprind și se alătură instinctiv altora atunci când oportunitatea se ivește. Persoanele caracterizate puternic de această dimensiune a personalității sunt asertive și caută să fie în centrul atenției, fie pentru a conduce, fie pentru se distra împreună cu ceilalți. În cazuri extreme, pot să fie prea tentați de nevoia de a se alătura altora pentru a putea să-și urmeze în mod eficace scopurile. Aceasta este cu atât mai adevărată cu cât nivelul lor de conștiinciozitate este mai scăzut.""",
                          f"""Pe de cealaltă parte, persoanele introverte sunt mult mai puțin excitabile la stimuli și se simt copleșite de agitație, zgomot sau contexte sociale ample. Persoanele introverte nu implică alți oameni în activitățile pe care le întreprind, preferând concentrarea permisă de solitudine. Atunci când interacționează cu alți oameni, preferă să o facă alături de prieteni sau cunoscuți. De asemenea, tind să conceapă răspunsuri la întrebări mai încet, punând mai mare preț pe calitatea informației oferite decât pe rapiditatea oferirii informației; consideră acest acest al doilea tip de răspuns ca fiind impropriu și expedient. Introverților le este mai greu să inițieze conversații sau să își facă vocea auzită, fapt pentru care pot rămâne într-un rol secundar chiar și atunci când calificările le-ar permite să se afirme."""],
          ],
          
@@ -193,7 +193,7 @@ def results(request):
          'ptiles': {k: [v[0], int(v[1] * 100), v[2]] for k, v in ptiles.items()},
      }
     
-    # print({k: v * 100 for k, v in ptiles.items()})/
+    # print({k: [v[0], int(v[1] * 100), v[2]] for k, v in ptiles.items()})
     # print(ptiles['c'] * 100)
     
 

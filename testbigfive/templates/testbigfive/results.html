@@ -67,7 +67,6 @@
           </div>
         </div>
       </div>
-
       {% endfor %}
 
       <br />
@@ -81,6 +80,23 @@
           </p>
         </div>
       </div>
+
+
+      {% for key, val in ptiles.items %}
+      {% comment %} <script> window.onload = progr_bar("{{key}}", "{{val}}") </script> {% endcomment %}
+      <div class="row justify-content-center">
+        <div class="col-10 panel">
+          <h3> {{key}} </h3>
+          <h5> Percentil {{val.1}} </h5>
+          <span>  Într-un grup de 100 persoane, sunteți o persoană mai {{val.0}} ca {{val.1}} dintre aceștia. </span>
+      {% for text in val.2%}
+      <p class = "text-justify"> {{text}} </p>
+        {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
 
     <div class="container">
       <br />
