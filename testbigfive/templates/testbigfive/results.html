@@ -60,7 +60,7 @@
       
       {% for key, val in ptiles.items %}
       <div class="row justify-content-center">
-        <div class="col-10 panel">
+        <div class="col-6 panel">
           <h5 class="noPadding text-muted">{{key}}</h5>
           <div class="myProgress">
             <div id="{{key}}" class="myBar">0%</div>
@@ -72,7 +72,7 @@
       <br />
       <hr />
       <div class="row justify-content-center">
-        <div class="col-10 panel" style="background: #eee">
+        <div class="col-6" style="background: #eee">
           <p>
             Te interesează și vrei să aflii mai mult? Pagina noastră de Facebook
             postează frecvent ultimele noutăți legate de teoria Big Five. O poți
@@ -88,11 +88,14 @@
         <div class="col-10 panel">
           <h3> {{key}} </h3>
           <h5> Percentil {{val.1}} </h5>
+          
           <span>  Într-un grup de 100 persoane, sunteți o persoană mai {{val.0}} ca {{val.1}} dintre aceștia. </span>
       {% for text in val.2%}
       <p class = "text-justify"> {{text}} </p>
         {% endfor %}
+        <br>
         </div>
+        
       </div>
       {% endfor %}
 
