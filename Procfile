@@ -1,1 +1,1 @@
-web gunicorn personalityProject.wsgi:aaplication --log-file -
+web gunicorn personalityProject.wsgi:application --log-file -
