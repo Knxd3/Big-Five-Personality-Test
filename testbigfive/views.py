@@ -112,9 +112,21 @@ def questionnaire(request):
 
 #### RESULTS PAGE ####
 def results(request):
+    # for i in range(500):
+    #         userScore(
+             
+    #           user_1 = '',
+    #           c = np.random.binomial(16, 0.5) - 8, 
+    #           a = np.random.binomial(16, 0.5) - 8, 
+    #           e = np.random.binomial(16, 0.5) - 8, 
+    #           n = np.random.binomial(16, 0.5) - 8, 
+    #           o = np.random.binomial(16, 0.5) - 8).save()
+    
     db_qs = userScore.objects.all().values()
     db_qs_df = pd.DataFrame.from_records(db_qs)
     # print(db_qs_df)
+    
+        
 
     latest_db_q = db_qs_df.loc[db_qs_df['id'] == max(db_qs_df['id'].values), :]
     # print(latest_db_q)
@@ -195,18 +207,5 @@ def results(request):
     
     # print({k: [v[0], int(v[1] * 100), v[2]] for k, v in ptiles.items()})
     # print(ptiles['c'] * 100)
-    
-
-    # if want to generate random scores
-
-    # for i in range(100):
-    #     userScore(
-             
-    #           user_1 = '',
-    #           c = np.random.binomial(16, 0.5) - 8, 
-    #           a = np.random.binomial(16, 0.5) - 8, 
-    #           e = np.random.binomial(16, 0.5) - 8, 
-    #           n = np.random.binomial(16, 0.5) - 8, 
-    #           o = np.random.binomial(16, 0.5) - 8).save()
     
     return render(request, 'testbigfive/results.html', context)
