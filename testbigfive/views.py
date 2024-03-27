@@ -67,7 +67,7 @@ def questionnaire(request):
             raw_['value'] = raw_['value'].values * np.array([1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1])
             scores_agg = raw_.groupby(['facet']).agg({'value' : 'sum'})
             scores_f = scores_agg.transpose()
-            scores_f1 = pd.DataFrame({'c':[None], 'o':[None], 'a':[None], 'e':[None], 'n':[None], 'user':[np.random.rand(1)]})
+            scores_f1 = pd.DataFrame({'c':[None], 'o':[None], 'a':[None], 'e':[None], 'n':[None], 'user_1':[np.random.rand(1)]})
             # print(scores_f)
             # # print(scores_f['a'].values[0])
             def check(p, scr):
