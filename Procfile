@@ -1,1 +1,0 @@
-web gunicorn personalityProject.wsgi:application --log-file -

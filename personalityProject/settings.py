@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-v)9y+78ewff#6vlpdk@ic_qbwg4ag5w!7))1fk2+o0q#z41n8h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -87,29 +87,29 @@ WSGI_APPLICATION = 'personalityProject.wsgi.application'
 # }
 
 
-# # LOCAL RUN
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'test-personalitate',
-#         'USER': 'postgres',
-#         'PASSWORD': '1234',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-
+# LOCAL RUN
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dund905edi46g',
-        'USER': 'yistlmewhpmgfu',
-        'PASSWORD': '242392330d6cb8f7fd5b4c416b12e00a635babb5c4ea23bc372c37375d6dc7e9',
-        'HOST': 'ec2-107-21-67-46.compute-1.amazonaws.com',
+        'NAME': 'test-personalitate',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dund905edi46g',
+#         'USER': 'yistlmewhpmgfu',
+#         'PASSWORD': '242392330d6cb8f7fd5b4c416b12e00a635babb5c4ea23bc372c37375d6dc7e9',
+#         'HOST': 'ec2-107-21-67-46.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -147,9 +147,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'STATIC/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
