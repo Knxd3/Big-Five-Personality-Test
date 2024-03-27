@@ -88,7 +88,8 @@ def questionnaire(request):
                                    a = scores_f1['a'].values[0],
                                    e = scores_f1['e'].values[0],
                                    n = scores_f1['n'].values[0],
-                                   o = scores_f1['o'].values[0])
+                                   o = scores_f1['o'].values[0],
+                                   user_1 = scores_f1['user_1'].values[0])
             user_entry.save()
 
             # print(user_entry.id)
