@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'personalityProject.wsgi.application'
 # }
 
 
-# LOCAL RUN #
+# # LOCAL RUN
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',

@@ -202,7 +202,7 @@ def results(request):
     # for i in range(100):
     #     userScore(
              
-    #           user = '',
+    #           user_1 = '',
     #           c = np.random.binomial(16, 0.5) - 8, 
     #           a = np.random.binomial(16, 0.5) - 8, 
     #           e = np.random.binomial(16, 0.5) - 8, 
