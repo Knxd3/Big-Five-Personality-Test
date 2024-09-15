@@ -3,4 +3,5 @@
 
 Django & Heroku
 
-https://personalityprojectdjango-aa9a02389b52.herokuapp.com/
+Obsolete: https://personalityprojectdjango-aa9a02389b52.herokuapp.com/
+See no-heroku branch
