@@ -4,10 +4,7 @@
     {% load static %}
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:600"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet" />
 
     <!-- Latest compiled and minified CSS -->
     <link
@@ -23,82 +20,101 @@
     ></script>
 
     <script src="{% static 'testbigfive/scripts.js' %}"></script>
-    <link rel = 'stylesheet' href = {% static 'testbigfive/style.css'%}?{% now
-    'U' %}>
+    <link rel="stylesheet" href="{% static 'testbigfive/style.css' %}?{% now 'U' %}" />
   </head>
 
   <body>
     <div class="container justify-content-center border">
-      <div class="row justify-content-center">
-        <div class="d-flex align-items-center justify-content-center">
-          <img src={% static 'testbigfive/emblem.png'%} alt="Logo testbigfive.ro
-          test personalitate Big Five" style="width:120px;height:120px;
-          text-align:center;">
-        </div>
-      </div>
-      <hr />
-      <br />
-      <div class="row justify-content-center">
-        <div class="col-10 panel">
-          <p class="text-justify">
-            Acestea sunt rezultatele tale pentru testul de personalitate Big
-            Five. Scorul tău este raportat la toți participanții care au mai dat
-            acest test online. Toate precauțiile necesare au fost luate pentru a
-            elimina intrările ilegitime. Considerând că acest test este aplicat
-            doar în mediul online, el reprezintă populația persoanelor
-            vorbitoare de română care au acces la internet și au măcar un minim
-            de interes pentru teste de personalitate. Desigur, acest test online
-            nu este un instrument terapeutic și prin urmare nu dorește să
-            înlocuiască o evaluare administrată prin variante aprobate clinic ale
-            testului Big Five.
-          </p>
-        </div>
-      </div>
-
-
-      {% comment %} see bottom script - ptile values passed to js {% endcomment %}
-      
-      {% for key, val in ptiles.items %}
-      <div class="row justify-content-center">
-        <div class="col-6 panel">
-          <h5 class="noPadding text-muted">{{key}}</h5>
-          <div class="myProgress">
-            <div id="{{key}}" class="myBar">0%</div>
+      <div class="row pt-3">
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group btn-group-sm" role="group" aria-label="Language toggle">
+            {% for code, label in languages.items %}
+              {% if code == lang %}
+                <button type="button" class="btn btn-secondary" disabled>{{ label }}</button>
+              {% else %}
+                <a class="btn btn-outline-secondary" href="{% url 'results' %}?lang={{ code }}">{{ label }}</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
-      {% endfor %}
-
-      <br />
-      <hr />
       <div class="row justify-content-center">
-        <div class="col-6" style="background: #eee">
-          <p>
-            Te interesează și vrei să aflii mai mult? Pagina noastră de Facebook
-            postează frecvent ultimele noutăți legate de teoria Big Five. O poți
-            accesa aici .
-          </p>
+        <div class="d-flex align-items-center justify-content-center">
+          <img
+            src="{% static 'testbigfive/emblem.png' %}"
+            alt="Logo testbigfive.ro test personalitate Big Five"
+            style="width:120px;height:120px;text-align:center;"
+          />
         </div>
       </div>
-
-
-      {% for key, val in ptiles.items %}
-      {% comment %} <script> window.onload = progr_bar("{{key}}", "{{val}}") </script> {% endcomment %}
+      <hr />
+      <br />
       <div class="row justify-content-center">
         <div class="col-10 panel">
-          <h3> {{key}} </h3>
-          <h5> Percentil {{val.1}} </h5>
-          
-          <span>  Într-un grup de 100 persoane, sunteți o persoană mai {{val.0}} ca {{val.1}} dintre aceștia. </span>
-      {% for text in val.2%}
-      <p class = "text-justify"> {{text}} </p>
-        {% endfor %}
-        <br>
+          {% if lang == 'en' %}
+            <p class="text-justify">
+              These are your Big Five personality test results. Your score is compared with everyone who has taken this test online. We filter suspicious entries as much as possible. Because the questionnaire runs exclusively online, it reflects people who speak Romanian, have internet access, and show at least some interest in personality tests. This is not a clinical instrument and it is not meant to replace an assessment administered through officially approved Big Five inventories.
+            </p>
+          {% else %}
+            <p class="text-justify">
+              Acestea sunt rezultatele tale pentru testul de personalitate Big Five. Scorul tău este raportat la toți participanții care au mai dat acest test online. Toate precauțiile necesare au fost luate pentru a elimina intrările ilegitime. Considerând că acest test este aplicat doar în mediul online, el reprezintă populația persoanelor vorbitoare de română care au acces la internet și au măcar un minim de interes pentru teste de personalitate. Desigur, acest test online nu este un instrument terapeutic și prin urmare nu dorește să înlocuiască o evaluare administrată prin variante aprobate clinic ale testului Big Five.
+            </p>
+          {% endif %}
         </div>
-        
       </div>
-      {% endfor %}
 
+      {% if dimensions %}
+        {% for dimension in dimensions %}
+          <div class="row justify-content-center">
+            <div class="col-6 panel">
+              <h5 class="noPadding text-muted">{{ dimension.label }}</h5>
+              <div class="myProgress">
+                <div id="{{ dimension.slug }}" class="myBar">0%</div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        <br />
+        <hr />
+        <div class="row justify-content-center">
+          <div class="col-6" style="background: #eee">
+            {% if lang == 'en' %}
+              <p>
+                Want to keep exploring? Our Facebook page regularly shares new insights and resources about the Big Five framework. Join us there.
+              </p>
+            {% else %}
+              <p>
+                Te interesează și vrei să afli mai mult? Pagina noastră de Facebook postează frecvent ultimele noutăți legate de teoria Big Five. Ne poți urmări acolo.
+              </p>
+            {% endif %}
+          </div>
+        </div>
+
+        {% for dimension in dimensions %}
+          <div class="row justify-content-center">
+            <div class="col-10 panel">
+              <h3>{{ dimension.label }}</h3>
+              <h5>{{ percentile_label }} {{ dimension.percentile }}</h5>
+              <span>{{ dimension.comparison }}</span>
+              {% for text in dimension.paragraphs %}
+                <p class="text-justify">{{ text }}</p>
+              {% endfor %}
+              <br />
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="row justify-content-center">
+          <div class="col-8 panel">
+            {% if lang == 'en' %}
+              <p>No results are available yet. Please complete the questionnaire first.</p>
+            {% else %}
+              <p>Nu există rezultate disponibile încă. Completați mai întâi chestionarul.</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
     </div>
 
     <div class="container">
@@ -107,20 +123,24 @@
         <hr />
         <div>
           <pre style="float: left; font-size: 11px">
-Test Personalitate Big Five</pre
+{% if lang == 'en' %}Big Five Personality Test{% else %}Test Personalitate Big Five{% endif %}</pre
           >
-          <pre
-            style="float: right; font-size: 11px"
-          ><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"><i class="fa fa-facebook-square" style="font-size:15px"></i></a>
-            contact</pre>
+          <pre style="float: right; font-size: 11px"
+            ><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"
+              ><i class="fa fa-facebook-square" style="font-size:15px"></i></a
+            >
+            {% if lang == 'en' %}contact{% else %}contact{% endif %}</pre
+          >
         </div>
       </div>
     </div>
 
-    {% for key, val in ptiles.items %}
     <script>
-      window.onload = progr_bar("{{key}}", "{{val.1}}");
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for dimension in dimensions %}
+          progr_bar('{{ dimension.slug }}', '{{ dimension.percentile }}');
+        {% endfor %}
+      });
     </script>
-    {% endfor %}
   </body>
 </html>

@@ -4,10 +4,7 @@
     {% load static %}
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:600"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -22,81 +19,90 @@
     ></script>
 
     <script src="{% static 'testbigfive/scripts.js' %}"></script>
-    <link rel = 'stylesheet' href = {% static 'testbigfive/style.css'%}>
+    <link rel="stylesheet" href="{% static 'testbigfive/style.css' %}" />
   </head>
   <body>
-    <!-- Your HTML content -->
-    {% comment %} <button onclick="f1()">Click me!</button> {% endcomment %}
-
     <div class="container justify-content-center border">
+      <div class="row pt-3">
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group btn-group-sm" role="group" aria-label="Language toggle">
+            {% for code, label in languages.items %}
+              {% if code == lang %}
+                <button type="button" class="btn btn-secondary" disabled>{{ label }}</button>
+              {% else %}
+                <a class="btn btn-outline-secondary" href="?lang={{ code }}">{{ label }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
       <div class="row justify-content-center">
         <div class="d-flex align-items-center justify-content-center">
-          <img src={% static 'testbigfive/emblem.png'%} alt="Logo testbigfive.ro
-          test personalitate Big Five" style="width:120px;height:120px;
-          text-align:center;">
+          <img
+            src="{% static 'testbigfive/emblem.png' %}"
+            alt="Logo testbigfive.ro test personalitate Big Five"
+            style="width:120px;height:120px;text-align:center;"
+          />
         </div>
       </div>
       <hr />
       <br />
       <div class="row justify-content-center">
         <div class="col-8 panel">
-          <p class="text-justify">
-            <strong>Următoarele intrebari conțin serii de afirmații.</strong>
-            Aveți posibilitatea de a parcurge un test scurt, de 20 intrebări și
-            unul extensiv, de 100 intrebări. Pentru testul scurt, vă puteți
-            aștepta la o plasare aproximativă în distribuția trăsăturilor. În
-            urma celui extensiv, veți fi plasat cu un înalt grad de acuratețe în
-            distribuția trăsăturilor. În ambele cazuri veți primi o descriere
-            detaliată a fiecărei trăsături. De asemenea, puteți ajunge la
-            descrierile trăsăturile și fără să completați testul. Trebuie să
-            dați click pe butonul Trimite Răspunsurile.
-          </p>
-          <p>
-            După ce ați trimis răspunsurile la afirmații, veți primi rezultatele
-            testului. Cele 5 dimensiuni evaluate sunt: agreabilitatea,
-            conștiinciozitatea, deschiderea către experiențe, extraversia și
-            stabilitatea emoțională.
-          </p>
+          {% if lang == 'en' %}
+            <p class="text-justify">
+            <strong>The following sections contain short sets of statements.</strong>
+            This brief version provides an approximate estimate of your personality traits; the longer version yields more precise results. After completing the test, you will receive a detailed explanation of each of the five major dimensions. You may also read those descriptions without completing the questionnaire - just remember to click <strong>Submit Answers</strong> to proceed.
+            </p>
+            <p>
+              After you submit your responses, a results page will appear summarizing your scores across the five measured traits: <strong>Agreeableness, Conscientiousness, Openness to Experience, Extraversion,</strong> and <strong>Emotional Stability</strong>.
+            </p>
+            <p>
+              Once submitted, you will also gain access to a detailed description of each of these five dimensions.
+            </p>
+            <p>
+              Describe yourself as you currently are, not as you wish to be. When uncertain, think about how you compare to the people around you. Your responses are anonymous and analyzed only in aggregate form. For each statement, select the option that             best reflects your agreement:
+              <strong>1. Strongly disagree, 2. Disagree, 3. Neutral, 4. Agree, 5. Strongly agree.</strong>
+            </p>
 
-          <p>
-            În urma trimiterii răspunsurilor vei avea acces la o pagină care
-            descrie fiecare dintre cele 5 dimensiuni de personalitate.
-          </p>
-          <p>
-            Descrieți așa cum sunteți acum. Ajută să vă raportați la persoanele
-            din anturajul dumneavoastră. Răspunsurile dumneavoastră la aceste
-            întrebări nu vă identifică personal; ele sunt adăugate unei baze de
-            date în mod anonim. Pentru fiecare afirmație, alegeți dacă este
-            <strong
-              >1. Dezacord deplin, 2. Dezacord, 3. Indiferent 4.
-              Acord sau 5. Acord deplin.</strong
-            >;
-          </p>
+          {% else %}
+            <p class="text-justify">
+              <strong>Următoarele întrebări conțin serii de afirmații.</strong>
+              Aveți posibilitatea de a parcurge un test scurt, de 20 întrebări, și unul extensiv, de 100 întrebări. Pentru testul scurt vă puteți aștepta la o plasare aproximativă în distribuția trăsăturilor. În urma celui extensiv veți fi plasat cu un înalt grad de acuratețe în distribuția trăsăturilor. În ambele cazuri primiți o descriere detaliată a fiecărei trăsături. De asemenea, puteți ajunge la descrierile trăsăturilor și fără să completați testul. Trebuie să dați click pe butonul Trimite Răspunsurile.
+            </p>
+            <p>
+              După ce ați trimis răspunsurile la afirmații veți primi rezultatele testului. Cele 5 dimensiuni evaluate sunt: agreabilitatea, conștiinciozitatea, deschiderea către experiențe, extraversia și stabilitatea emoțională.
+            </p>
+            <p>
+              În urma trimiterii răspunsurilor veți avea acces la o pagină care descrie fiecare dintre cele 5 dimensiuni de personalitate.
+            </p>
+            <p>
+              Descrieți-vă așa cum sunteți acum. Ajută să vă raportați la persoanele din anturajul dumneavoastră. Răspunsurile la aceste întrebări nu vă identifică personal; ele sunt adăugate unei baze de date în mod anonim. Pentru fiecare afirmație alegeți dacă este
+              <strong>1. Dezacord puternic, 2. Dezacord, 3. Neutru, 4. Acord sau 5. Acord puternic.</strong>
+            </p>
+          {% endif %}
         </div>
       </div>
 
       <div class="row justify-content-center">
         <div class="d-flex align-items-center justify-content-center">
-          <button
-            type="button"
-            class="btn btn-light"
-            id="bring_tbl"
-            onclick="survey()"
-          >
-            Arata testul
+          <button type="button" class="btn btn-light" id="bring_tbl" onclick="survey()">
+            {% if lang == 'en' %}Show the questionnaire{% else %}Arată testul{% endif %}
           </button>
         </div>
       </div>
       <br />
 
       <div class="container col-10 d-none" id="mytable">
-        <div class="row justify-content-center">
+        <div class="row d-flex align-items-center justify-content-center">
           <div class="justify-content-center form-control">
             <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="lang" value="{{ lang }}" />
               <table class="table table-striped table-sm">
                 <tr>
                   <td>
-                    <span> Itemi </span>
+                    <span>{% if lang == 'en' %}Item{% else %}Itemi{% endif %}</span>
                   </td>
                   <td>1</td>
                   <td>2</td>
@@ -104,30 +110,21 @@
                   <td>4</td>
                   <td>5</td>
                 </tr>
-                {% csrf_token %} {% for i, val in q_set.items %}
-                <tr>
-                  <td>
-                    <span> {{val}} </span>
-                  </td>
-                  {% for j in m %}
-                  <td>
-                    <input
-                      type="radio"
-                      name="item{{i}}"
-                      id="item{{i}}{{j}}"
-                      value="{{j}}"
-                    />
-                  </td>
-                  {% endfor %}
-                </tr>
+                {% for i, val in q_set.items %}
+                  <tr>
+                    <td>
+                      <span>{{ val }}</span>
+                    </td>
+                    {% for j in m %}
+                      <td>
+                        <input type="radio" name="item{{ i }}" id="item{{ i }}{{ j }}" value="{{ j }}" />
+                      </td>
+                    {% endfor %}
+                  </tr>
                 {% endfor %}
               </table>
-              <button
-                type="submit"
-                value="Submit"
-                class="btn btn-light form-control"
-              >
-                Trimite
+              <button type="submit" value="Submit" class="btn btn-light form-control">
+                {% if lang == 'en' %}Submit{% else %}Trimite{% endif %}
               </button>
             </form>
           </div>
@@ -136,9 +133,9 @@
     </div>
 
     {% if err == 0 %}
-    <script>
-      alert("Vă rog completați toate intrebările pentru a trece mai departe.");
-    </script>
+      <script>
+        alert("{% if lang == 'en' %}Please complete all questions before continuing.{% else %}Vă rugăm să completați toate întrebările înainte de a continua.{% endif %}");
+      </script>
     {% endif %}
 
     <br />
@@ -147,12 +144,14 @@
         <hr />
         <div>
           <pre style="float: left; font-size: 11px">
-Test Personalitate Big Five</pre
+{% if lang == 'en' %}Big Five Personality Test{% else %}Test Personalitate Big Five{% endif %}</pre
           >
-          <pre
-            style="float: right; font-size: 11px"
-          ><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"><i class="fa fa-facebook-square" style="font-size:15px"></i></a>
-        contact</pre>
+          <pre style="float: right; font-size: 11px"
+            ><a style="float: right;" href="https://www.facebook.com/TestBigFive.ro/" target="_blank"
+              ><i class="fa fa-facebook-square" style="font-size:15px"></i></a
+            >
+            {% if lang == 'en' %}contact{% else %}contact{% endif %}</pre
+          >
         </div>
         <br />
         <br />

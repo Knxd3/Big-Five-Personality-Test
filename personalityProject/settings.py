@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 from pathlib import Path
 import os
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,14 +23,34 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+SECRET_FILE = BASE_DIR / 'secret.key'
+
+
+def get_secret_key():
+    env_key = os.environ.get('DJANGO_SECRET_KEY')
+    if env_key:
+        return env_key.strip()
+
+    if SECRET_FILE.exists():
+        key = SECRET_FILE.read_text(encoding='utf-8').strip()
+        if key:
+            return key
+
+    raise ImproperlyConfigured(
+        "DJANGO_SECRET_KEY not set and secret.key file is missing or empty."
+    )
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v)9y+78ewff#6vlpdk@ic_qbwg4ag5w!7))1fk2+o0q#z41n8h'
+SECRET_KEY = get_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Application definition
 
@@ -79,25 +100,25 @@ WSGI_APPLICATION = 'personalityProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-# LOCAL RUN
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test-personalitate',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# # LOCAL RUN
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'test-personalitate',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # DATABASES = {
@@ -105,7 +126,6 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'dund905edi46g',
 #         'USER': 'yistlmewhpmgfu',
-#         'PASSWORD': '242392330d6cb8f7fd5b4c416b12e00a635babb5c4ea23bc372c37375d6dc7e9',
 #         'HOST': 'ec2-107-21-67-46.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
@@ -146,7 +166,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'STATIC/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
