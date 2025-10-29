@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'test-personalitate',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': '--',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -105,7 +105,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'dund905edi46g',
 #         'USER': 'yistlmewhpmgfu',
-#         'PASSWORD': '242392330d6cb8f7fd5b4c416b12e00a635babb5c4ea23bc372c37375d6dc7e9',
+#         'PASSWORD': '--',
 #         'HOST': 'ec2-107-21-67-46.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
